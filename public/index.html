@@ -30,7 +30,7 @@
         <script>
             function obtenerCamiseta() {
             var id = document.getElementById('camisetaId').value;
-            fetch(`https://<tu-nombre-de-usuario>.github.io/<nombre-del-repositorio>/api/Camisetas/${id}`)
+            fetch(`https://proglopez.github.io/Apicamisetas/api/Camisetas/${id}`)
                 .then(response => response.json())
                 .then(data => {
                 document.getElementById('resultado').innerText = JSON.stringify(data, null, 2);
