@@ -1,84 +1,68 @@
+<!-- Api Camisetas -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interfaz de API de Camisetas</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-    }
-    .container {
-        max-width: 600px;
-        margin: 0 auto;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid black;
-        padding: 8px;
-        text-align: left;
-    }
-    th {
-        background-color: #f4f4f4;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfaz de API de Camisetas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>API de Camisetas</h1>
-    <div>
-        <label for="camisetaId">ID de Camiseta:</label>
-        <input type="text" id="camisetaId" name="camisetaId">
-        <button type="button" onclick="obtenerCamiseta()">Obtener Camiseta</button>
+    <div class="container">
+        <h1>API de Camisetas</h1>
+        <div>
+            <label for="camisetaId">ID de Camiseta:</label>
+            <input type="text" id="camisetaId" name="camisetaId">
+            <button type="button" onclick="obtenerCamiseta()">Obtener Camiseta</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción y Precio</th>
+                </tr>
+            </thead>
+            <tbody id="resultado">
+            </tbody>
+        </table>
     </div>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Descripción y Precio</th>
-            </tr>
-        </thead>
-        <tbody id="resultado">
-        </tbody>
-    </table>
-</div>
 
-<script>
-    function obtenerCamiseta() {
-        var id = document.getElementById('camisetaId').value;
-        fetch(`https://proglopez.github.io/Apicamisetas/Data/Json/Camisetas.json`)
-            .then(response => response.json())
-            .then(data => {
-                var tbody = document.getElementById('resultado');
-                tbody.innerHTML = '';
-                var filteredData = data;
-                if (id) {
-                    filteredData = data.filter(item => item.ID == id);
-                }
-                filteredData.forEach(item => {
-                    var row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${item.ID}</td>
-                        <td>${item.Nombre}</td>
-                        <td>${item.Descripcion} - $${item.Precio}</td>
-                    `;
-                    tbody.appendChild(row);
+    <script>
+        function obtenerCamiseta(id) {
+            fetch(`https://proglopez.github.io/Apicamisetas/api/camiseta_${id}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
                 });
-            })
-            .catch(error => {
-                document.getElementById('resultado').innerText = 'Error: ' + error;
-            });
-    }
-</script>
-
+        }
+    </script>
 </body>
 </html>
-
 
 <!-- Filtro por id -->
 <!-- <!DOCTYPE html>
