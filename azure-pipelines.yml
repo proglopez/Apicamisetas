@@ -12,10 +12,18 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- checkout: self
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    echo Setting up git credentials...
+    git config user.email "prog.lope@gmail.com"
+    git config user.name "prolopez"
+
+- script: |
+    echo Synchronizing changes to Azure Repos...
+    git remote add azure https://tuorganizacion@dev.azure.com/tuorganizacion/tuproyecto/_git/turepositorio
+    git push azure HEAD:refs/heads/master
+  displayName: 'Synchronize changes to Azure Repos'
+  
+- script: echo Synchronization completed successfully!
+  displayName: 'Completion Message'
