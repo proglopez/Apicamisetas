@@ -18,13 +18,11 @@ steps:
     echo Setting up git credentials...
     git config user.email "prog.lopez@gmail.com"
     git config user.name "proglopez"
-    git config credential.helper store
-    echo "https://edwarddevopsapp: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@dev.azure.com" > ~/.git-credentials
   displayName: 'Setup Git Credentials'
 
 - script: |
     echo Synchronizing changes to Azure Repos...
-    git remote add azure https://edwarddevopsapp@dev.azure.com/edwarddevopsapp/AppDevops/_git/AppDevops
+    git remote add azure https://edwarddevopsapp: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@dev.azure.com/edwarddevopsapp/AppDevops/_git/AppDevops
     git push azure HEAD:refs/heads/master
   displayName: 'Synchronize changes to Azure Repos'
   
