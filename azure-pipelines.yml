@@ -21,7 +21,7 @@ steps:
 
 - script: |
     echo Synchronizing changes to Azure Repos...
-    git remote add azure https://tuorganizacion@dev.azure.com/tuorganizacion/tuproyecto/_git/turepositorio
+    git remote add azure https://edwarddevopsapp@dev.azure.com/edwarddevopsapp/AppDevops/_git/AppDevops
     git push azure HEAD:refs/heads/master
   displayName: 'Synchronize changes to Azure Repos'
   
