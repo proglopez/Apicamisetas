@@ -33,7 +33,7 @@
         <h1>API de Camisetas</h1>
         <div>
             <label for="camisetaId">ID de Camiseta:</label>
-            <input type="text" id="camisetaId" name="camisetaId">
+            <input type="text" id="camisetaId" name="camisetaId" oninput="filtrarCamisetas()">
             <button type="button" onclick="obtenerCamiseta()">Obtener Camiseta</button>
         </div>
         <table>
@@ -50,19 +50,55 @@
     </div>
 
     <script>
-        function obtenerCamiseta(id) {
-            fetch(`https://proglopez.github.io/Apicamisetas/api/camiseta_${id}.json`)
+        let camisetas = [];
+
+        function cargarCamisetas() {
+            fetch(`https://proglopez.github.io/Apicamisetas/api/camisetas.json`)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+                    camisetas = data;
+                    mostrarCamisetas(camisetas);
                 })
                 .catch(error => {
                     console.error('Error:', error);
                 });
         }
+
+        function obtenerCamiseta(id) {
+            const camiseta = camisetas.find(camiseta => camiseta.ID === id);
+            if(camiseta) {
+                mostrarCamisetas([camiseta]);
+            } else {
+                mostrarCamisetas([]);
+            }
+        }
+
+        function mostrarCamisetas(data) {
+            const resultado = document.getElementById('resultado');
+            resultado.innerHTML = '';
+            data.forEach(camiseta => {
+                resultado.innerHTML += `<tr>
+                    <td>${camiseta.ID}</td>
+                    <td>${camiseta.Nombre}</td>
+                    <td>${camiseta.Descripcion} - ${camiseta.Precio}</td>
+                </tr>`;
+            });
+        }
+
+        function filtrarCamisetas() {
+            const id = parseInt(document.getElementById('camisetaId').value);
+            if(id) {
+                obtenerCamiseta(id);
+            } else {
+                mostrarCamisetas(camisetas);
+            }
+        }
+
+        window.onload = cargarCamisetas;
     </script>
 </body>
 </html>
+
 
 <!-- Filtro por id -->
 <!-- <!DOCTYPE html>
