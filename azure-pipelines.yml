@@ -18,6 +18,9 @@ steps:
     echo Setting up git credentials...
     git config user.email "prog.lope@gmail.com"
     git config user.name "prolopez"
+    git config credential.helper store
+    echo "https://edwarddevopsapp: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@dev.azure.com" > ~/.git-credentials
+  displayName: 'Setup Git Credentials'
 
 - script: |
     echo Synchronizing changes to Azure Repos...
