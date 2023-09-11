@@ -1,3 +1,3 @@
 # Apicamisetas
 
-# Api..
+# Test de sincronización desde Github hacia Azure Repos.
