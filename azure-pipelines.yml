@@ -19,7 +19,7 @@ steps:
     git config user.email "prog.lopez@gmail.com"
     git config user.name "proglopez"
     git config credential.helper store
-    echo "https://edwarddevopsapp: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@dev.azure.com" > ~/.git-credentials
+    echo "https://edwarddevopsapp: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@dev.azure.com" > ~/.git-credentials
   displayName: 'Setup Git Credentials'
 
 - script: |
