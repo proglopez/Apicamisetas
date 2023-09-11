@@ -27,19 +27,24 @@
             <div id="resultado"></div>
         </div>
 
-        <script>
-            function obtenerCamiseta() {
-            var id = document.getElementById('camisetaId').value;
-            fetch(`https://proglopez.github.io/Apicamisetas/api/Camisetas/${id}`)
-                .then(response => response.json())
-                .then(data => {
-                document.getElementById('resultado').innerText = JSON.stringify(data, null, 2);
-                })
-                .catch(error => {
+<script>
+    function obtenerCamiseta() {
+        var id = document.getElementById('camisetaId').value;
+        fetch(`https://proglopez.github.io/Apicamisetas/Data/Json/Camisetas.json`)
+            .then(response => response.json())
+            .then(data => {
+                var camiseta = data.find(item => item.ID == id);
+                if (camiseta) {
+                    document.getElementById('resultado').innerText = JSON.stringify(camiseta, null, 2);
+                } else {
+                    document.getElementById('resultado').innerText = 'Camiseta no encontrada';
+                }
+            })
+            .catch(error => {
                 document.getElementById('resultado').innerText = 'Error: ' + error;
-                });
-            }
-        </script>
+            });
+    }
+</script>
 
     </body>
 </html>
