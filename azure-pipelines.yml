@@ -18,7 +18,9 @@ steps:
     echo Setting up git credentials...
     git config user.email "prog.lopez@gmail.com"
     git config user.name "proglopez"
-  displayName: 'Setup Git Credentials'
+    echo "https://edwarddevopsapp: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@dev.azure.com" > ~/.git-credentials
+    cat ~/.git-credentials
+  displayName: 'Setup and Verify Git Credentials'
 
 - script: |
     cat ~/.git-credentials
