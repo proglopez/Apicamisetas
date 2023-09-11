@@ -21,9 +21,17 @@ steps:
   displayName: 'Setup Git Credentials'
 
 - script: |
+    cat ~/.git-credentials
+  displayName: 'Verify Git Credentials'
+
+- script: |
+    git config --list
+  displayName: 'List Git Config'
+
+- script: |
     echo Synchronizing changes to Azure Repos...
     git remote add azure https://edwarddevopsapp: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@dev.azure.com/edwarddevopsapp/AppDevops/_git/AppDevops
-    git push azure HEAD:refs/heads/master
+    GIT_TRACE=1 git push azure HEAD:refs/heads/master
   displayName: 'Synchronize changes to Azure Repos'
   
 - script: echo Synchronization completed successfully!
