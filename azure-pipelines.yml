@@ -1,10 +1,7 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-  - master
+  branches:
+    include:
+      - master
 
 pool:
   vmImage: ubuntu-latest
@@ -14,19 +11,15 @@ steps:
 
 - script: |
     echo Setting up git credentials...
-    git config user.email "prog.lopez@gmail.com"
-    git config user.name "proglopez"
-    echo "https://edwarddevopsapp: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@dev.azure.com" > ~/.git-credentials
-    cat ~/.git-credentials
-  displayName: 'Setup and Verify Git Credentials'
+    git config user.email "prog.lope@gmail.com"
+    git config user.name "prolopez"
 
 - script: |
-    cat ~/.git-credentials
-  displayName: 'Verify Git Credentials'
-
-- script: |
-    git config --list
-  displayName: 'List Git Config'
+    echo Synchronizing changes to Azure Repos...
+    git remote add azure https://edwarddevopsapp@dev.azure.com/edwarddevopsapp/AppDevops/_git/AppDevops
+    git push azure HEAD:refs/heads/master
+  displayName: 'Synchronize changes to Azure Repos'
   
 - script: echo Synchronization completed successfully!
   displayName: 'Completion Message'
+
