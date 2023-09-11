@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Interfaz de API de Camisetas</title>
+        <style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+</style>
+    </head>
+    <body>
+
+        <div class="container">
+            <h1>API de Camisetas</h1>
+            <div>
+                <label for="camisetaId">ID de Camiseta:</label>
+                <input type="text" id="camisetaId" name="camisetaId">
+                <button type="button" onclick="obtenerCamiseta()">Obtener
+                    Camiseta</button>
+            </div>
+            <div id="resultado"></div>
+        </div>
+
+        <script>
+            function obtenerCamiseta() {
+            var id = document.getElementById('camisetaId').value;
+            fetch(`https://<tu-nombre-de-usuario>.github.io/<nombre-del-repositorio>/api/Camisetas/${id}`)
+                .then(response => response.json())
+                .then(data => {
+                document.getElementById('resultado').innerText = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                document.getElementById('resultado').innerText = 'Error: ' + error;
+                });
+            }
+        </script>
+
+    </body>
+</html>
