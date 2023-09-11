@@ -1,0 +1,21 @@
+## Configuraciones locales
+appsettings*.json
+appsettings.*.json
+
+## Archivos temporales
+bin/
+Controllers/
+Data/
+Models/
+obj/
+Properties/
+.vscode/
+.idea/
+
+## Otros
+*.user
+*.suo
+*.userprefs
+
+## Archivos generados durante la publicación
+publish/
