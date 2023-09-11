@@ -29,12 +29,6 @@ steps:
 - script: |
     git config --list
   displayName: 'List Git Config'
-
-- script: |
-    echo Synchronizing changes to Azure Repos...
-    git remote add azure https://edwarddevopsapp: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@dev.azure.com/edwarddevopsapp/AppDevops/_git/AppDevops
-    GIT_TRACE=1 git push azure HEAD:refs/heads/master
-  displayName: 'Synchronize changes to Azure Repos'
   
 - script: echo Synchronization completed successfully!
   displayName: 'Completion Message'
