@@ -11,8 +11,8 @@ steps:
 
 - script: |
     echo Setting up git credentials...
-    git config user.email "prog.lope@gmail.com"
-    git config user.name "prolopez"
+    git config user.email "prog.lopez@gmail.com"
+    git config user.name "proglopez"
 
 - script: |
     echo Synchronizing changes to Azure Repos...
